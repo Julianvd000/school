@@ -1,7 +1,7 @@
-cijferICOR = input()
-cijferPROG = input()
-cijferCSN = input()
-gemiddelde = int
+cijferICOR = int(input("vul cijfer van icor in: "))
+cijferPROG = int(input("vul cijfer van prog in: "))
+cijferCSN = int(input("vul cijfer van csn in"))
+gemiddelde = 0
 
 
 
@@ -12,9 +12,9 @@ def gemiddelde():
 def saldo():
     gemiddelde()
     print( 'Mijn cijfers (gemiddeld een '
-        + gemiddelde +
+        + str(gemiddelde) +
         ') leveren een beloning van € '
-        + gemiddelde*30 + ' op!'
+        + str(gemiddelde*30) + ' op!'
     )
 
 
