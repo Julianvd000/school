@@ -1,4 +1,4 @@
-with open('kaartnummers.txt', 'r') as f:
+with open('kaartnummer.txt', 'r') as f:
     line = []
     for l in f:
         line.append(l.split(','))
