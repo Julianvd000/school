@@ -7,17 +7,23 @@ def inlezen_beginstation(stations):
             return inputBeginstationnaam
 
 def inlezen_eindstation(stations, beginstation):
+    stations = stations
+    beginstation = beginstation
+    inputEindstationnaam = input("Naar welk station reis je? ")
     while True:
-        inputEindstationnaam = input("Naar welk station reis je? ")
-        if inputEindstationnaam not in stations:
-            print("Dat is geen geldig eindstation!")
+        if inputEindstationnaam == beginstation:
+            print("Je bent al op dit station")
+            inputEindstationnaam = input("Naar welk station reis je? ")
         else:
-            return inputEindstationnaam
+            if inputEindstationnaam not in stations:
+                print("Dat is geen geldig eindstation!")
+            else:
+                return inputEindstationnaam
 
 def omroepen_reis(stations, beginstation, eindstation):
     beginstationNummer = stations.index(beginstation)
     eindstationNummer = stations.index(eindstation)
-    tussenliggendeStations = (stations.index(eindstation) - stations.index(beginstation)) - 1
+    tussenliggendeStations = (stations.index(eindstation) - stations.index(beginstation))
     print("Het beginstation, " + beginstation + ", is het " + str(beginstationNummer + 1) + "e station in het traject")
     print("Het eindstation, " + eindstation + ", is het " + str(eindstationNummer + 1) + "e station in het traject")
     print("Tussen " + beginstation + " en " + eindstation + " zit(ten) " + str(tussenliggendeStations) + " halte(s)")
