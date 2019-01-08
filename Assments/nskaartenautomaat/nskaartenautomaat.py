@@ -41,3 +41,4 @@ stations = ["Schagen", "Heerhugowaard", "Alkmaar", "Castricum", "Zaandam", "Amst
 beginstation = inlezen_beginstation(stations)
 eindstation = inlezen_eindstation(stations, beginstation)
 omroepen_reis(stations, beginstation, eindstation)
+ 
