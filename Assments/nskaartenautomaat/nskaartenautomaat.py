@@ -24,10 +24,12 @@ def omroepen_reis(stations, beginstation, eindstation):
     beginstationNummer = stations.index(beginstation)
     eindstationNummer = stations.index(eindstation)
     tussenliggendeStations = (stations.index(eindstation) - stations.index(beginstation))
+    if tussenliggendeStations < 0:
+        tussenliggendeStations = str(tussenliggendeStations)[1:]
     print("Het beginstation, " + beginstation + ", is het " + str(beginstationNummer + 1) + "e station in het traject")
     print("Het eindstation, " + eindstation + ", is het " + str(eindstationNummer + 1) + "e station in het traject")
     print("Tussen " + beginstation + " en " + eindstation + " zit(ten) " + str(tussenliggendeStations) + " halte(s)")
-    print("De prijs van jouw reis bedraagt €" + str(tussenliggendeStations * 5))
+    print("De prijs van jouw reis bedraagt €" + str(int(tussenliggendeStations) * 5))
     print()
     print("Zo ziet jouw route er uit:")
     print("O> " + beginstation)
