@@ -1,44 +1,45 @@
 def inlezen_beginstation(stations):
     while True:
-        inputBeginstationnaam = input("Vanaf welk station vertrek je? ")
-        if inputBeginstationnaam not in stations:
-            print("Dat is geen geldig beginstation!")
+        beginstation = input("Wat is je beginstation? ")
+        if beginstation == stations[-1]:
+            print(beginstation + " is het eindstation.")
+            continue
+        if beginstation in stations:
+            break
         else:
-            return inputBeginstationnaam
+            print("Deze trein komt niet in " + beginstation + ".")
+    return beginstation
+
 
 def inlezen_eindstation(stations, beginstation):
-    stations = stations
-    beginstation = beginstation
-    inputEindstationnaam = input("Naar welk station reis je? ")
     while True:
-        if inputEindstationnaam == beginstation:
-            print("Je bent al op dit station")
-            inputEindstationnaam = input("Naar welk station reis je? ")
-        else:
-            if inputEindstationnaam not in stations:
-                print("Dat is geen geldig eindstation!")
-            else:
-                return inputEindstationnaam
+        eindstation = input("Wat is je eindstation? ")
+        if eindstation in stations:
+            if stations.index(eindstation) > stations.index(beginstation):
+                break
+        print("Deze trein komt niet in " + eindstation + ".")
+    return eindstation
+
 
 def omroepen_reis(stations, beginstation, eindstation):
-    beginstationNummer = stations.index(beginstation)
-    eindstationNummer = stations.index(eindstation)
-    tussenliggendeStations = (stations.index(eindstation) - stations.index(beginstation))
-    if tussenliggendeStations < 0:
-        tussenliggendeStations = str(tussenliggendeStations)[1:]
-    print("Het beginstation, " + beginstation + ", is het " + str(beginstationNummer + 1) + "e station in het traject")
-    print("Het eindstation, " + eindstation + ", is het " + str(eindstationNummer + 1) + "e station in het traject")
-    print("Tussen " + beginstation + " en " + eindstation + " zit(ten) " + str(tussenliggendeStations) + " halte(s)")
-    print("De prijs van jouw reis bedraagt €" + str(int(tussenliggendeStations) * 5))
-    print()
-    print("Zo ziet jouw route er uit:")
-    print("O> " + beginstation)
-    for item in stations[(beginstationNummer + 1):(eindstationNummer - 1)]:
-        print("-> " + item)
-    print("O> " + eindstation)
+    indexEind = stations.index(eindstation)
+    indexBegin = stations.index(beginstation)
 
-stations = ["Schagen", "Heerhugowaard", "Alkmaar", "Castricum", "Zaandam", "Amsterdam Sloterdijk", "Amsterdam Centraal", "Amsterdam Amstel", "Utrecht Centraal", "’s-Hertogenbosch", "Eindhoven", "Weert", "Roermond", "Sittard", "Maastricht"]
+    print("Het beginstation {} is het {}e station in het traject.".format(beginstation, indexBegin + 1))
+    print("Het eindstation {} is het {}e station in het traject.".format(eindstation, indexEind + 1))
+    print("De afstand bedraagt {} station(s).".format(indexEind - indexBegin))
+    print("De prijs van het kaartje is {} euro.".format((indexEind - indexBegin) * 5))
+
+    print("\n")
+    print("Jij stapt in de trein in: " + beginstation)
+    for stationnummer in range(1, indexEind - indexBegin):
+        print(" - " + stations[indexBegin + stationnummer])
+    print("Jij stapt uit in: " + eindstation)
+
+
+stations = ["Schagen", "Heerhugowaard", "Alkmaar", "Castricum", "Zaandam", "Amsterdam Sloterdijk", "Amsterdam Centraal",
+            "Amsterdam Amstel", "Utrecht Centraal", "'s-Hertogenbosch", "Eindhoven",
+            "Weert", "Roermond", "Sittard", "Maastricht"]
 beginstation = inlezen_beginstation(stations)
 eindstation = inlezen_eindstation(stations, beginstation)
 omroepen_reis(stations, beginstation, eindstation)
- 
